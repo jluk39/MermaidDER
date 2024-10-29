@@ -1,27 +1,35 @@
 # Diagrama de Entidad-Relación (DER)
 
-## Entidades
+A continuación se presenta el diagrama de entidad-relación para la base de datos de vuelos, aeropuertos, pasajeros y personas.
 
-| Entidad    | Atributos                                        |
-|------------|--------------------------------------------------|
-| **FLIGHTS**| `id` (PK)                                       |
-|            | `origin_id`                                     |
-|            | `destination_id`                                |
-|            | `duration`                                      |
-| **AIRPORT**| `id` (PK)                                       |
-|            | `code`                                          |
-|            | `city`                                          |
-| **PASSENGERS**| `person_id` (PK)                             |
-|            | `flight_id`                                     |
-| **PEOPLE** | `id` (PK)                                       |
-|            | `first`                                         |
-|            | `last`                                          |
+```mermaid
+erDiagram
+    FLIGHTS {
+        INTEGER id PK
+        INTEGER origin_id
+        INTEGER destination_id
+        INTEGER duration
+    }
+    
+    AIRPORT {
+        INTEGER id PK
+        STRING code
+        STRING city
+    }
+    
+    PASSENGERS {
+        INTEGER person_id PK
+        INTEGER flight_id
+    }
+    
+    PEOPLE {
+        INTEGER id PK
+        STRING first
+        STRING last
+    }
 
-## Relaciones
-
-| Relación                         | Entidades Involucradas               |
-|----------------------------------|--------------------------------------|
-| Un vuelo **origina** en un aeropuerto | FLIGHTS ||--o{ AIRPORT             |
-| Un vuelo **llega** a un aeropuerto   | FLIGHTS ||--o{ AIRPORT             |
-| Un pasajero **incluye** a una persona | PASSENGERS }o--|| PEOPLE           |
-| Un pasajero **reserva** un vuelo      | PASSENGERS }o--|| FLIGHTS          |
+    FLIGHTS ||--o{ AIRPORT : originates
+    FLIGHTS ||--o{ AIRPORT : arrives
+    PASSENGERS }o--|| PEOPLE : includes
+    PASSENGERS }o--|| FLIGHTS : books
+--|| FLIGHTS          |
