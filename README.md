@@ -28,8 +28,7 @@ erDiagram
         STRING last
     }
 
-    FLIGHTS ||--o{ AIRPORT : originates
-    FLIGHTS ||--o{ AIRPORT : arrives
-    PASSENGERS }o--|| PEOPLE : includes
-    PASSENGERS }o--|| FLIGHTS : books
-    |
+    FLIGHTS ||--o{ AIRPORT : "originates"
+    FLIGHTS ||--o{ AIRPORT : "arrives"
+    PASSENGERS }o--|| PEOPLE : "includes"
+    PASSENGERS }o--|| FLIGHTS : "books"
